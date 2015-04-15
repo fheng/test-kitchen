@@ -42,6 +42,11 @@ module Kitchen
 
         def self.load!(logger = Kitchen.logger)
           load_librarian!(logger)
+          ::Librarian::Resolver.class_eval do
+            def cyclic
+              true
+            end
+          end
         end
 
         def resolve
